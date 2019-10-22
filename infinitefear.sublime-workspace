@@ -1,0 +1,312 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"st",
+				"stdout"
+			],
+			[
+				"test",
+				"testFile"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"json",
+				"Indent JSON"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/development/projects/infinitefear"
+	],
+	"file_history":
+	[
+		"/Q/ZEN-18991-HBB/webui/bower.json",
+		"/Q/ZEN-18991-HBB/webui/components/bower-license-crawler/index.js",
+		"/Q/ZEN-18991-HBB/webui/README.md",
+		"/Q/ZEN-18991-HBB/webui/LICENSE",
+		"/Q/ZEN-18991-HBB/webui/components/bower-license-crawler/README.md",
+		"/Q/ZEN-18991-HBB/webui/components/jquery.json-viewer-master/LICENSE",
+		"/Q/ZEN-18991-HBB/webui/bower-license-crawler/index.js",
+		"/Q/ZEN-18991-HBB/webui/tasks/schema.js",
+		"/Q/ZEN-18991-HBB/projectincludes/packages.pro",
+		"/Q/ZEN-18991-HBB/webui/tasks/schemaverify.js",
+		"/Q/ZEN-18991-HBB/webui/license.txt",
+		"/Q/ZEN-18991-HBB/webui/LICENCE.json",
+		"/Q/ZEN-18991-HBB/webui/.jsbeautifyrc",
+		"/Q/ZEN-18991-HBB/webui/.jshintignore",
+		"/Q/ZEN-18991-HBB/webui/public/bower_components/backbone/LICENSE",
+		"/Q/ZEN-18991-HBB/webui/public/bower_components/backbone/.bower.json",
+		"/Q/ZEN-18991-HBB/webui/public/bower_components/backbone/bower.json",
+		"/Q/ZEN-18991-HBB/webui/public/bower_components/underscore/LICENSE",
+		"/Q/ZEN-18991-HBB/webui/public/bower_components/underscore/package-lock.json",
+		"/Q/ZEN-18991-HBB/webui/public/bower_components/underscore/.bower.json",
+		"/Q/ZEN-18991-HBB/webui/public/bower_components/underscore/bower.json",
+		"/Q/ZEN-18991-HBB/webui/bower-license-crawler/package.json",
+		"/Q/ZEN-18991-HBB/webui/bower_licenses/bower_licenses.json",
+		"/Q/apimanager/src/services/localstorage/index.js",
+		"/Q/apimanager/src/index.js",
+		"/Q/apimanager/src/services/routes.js",
+		"/Q/ZEN-18991-HBB/webui/public/application/config/schema.json",
+		"/Q/ZEN-18991-HBB/installer/installer-resources/installer.xml",
+		"/Q/ZEN-18991-HBB/webui/node_modules/bower-license-tracker/src/bower-license-tracker.js",
+		"/Q/ZEN-18991-HBB/webui/node_modules/bower-license-tracker/bin/bower-tracker.js",
+		"/Q/ZEN-18991-HBB/webui/bower_licenses/backbone",
+		"/Q/ZEN-18991-HBB/webui/grunt/license.js",
+		"/Q/ZEN-18991-HBB/webui/ReadMe.md",
+		"/Q/ZEN-18991-HBB/webui/grunt/watch.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/validation.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/uglify.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/usebanner.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/todo.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/requirejs.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/processhtml.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/path_validator.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/modify_json.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/mocha_phantomjs.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/lineending.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/lesslint.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/less.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/jshint.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/jsdoc.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/instrument.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/imagemin.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/i18next.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/http-server.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/filerev_replace.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/filerev.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/copy.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/cssmin.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/csslint.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/clean.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/api.js",
+		"/Q/ZEN-18991-HBB/webui/grunt/bootlint.js",
+		"/Q/apimanager/src/components/forms/resources/property/type.js",
+		"/Q/apimanager/src/components/forms/shared/readwrite.js",
+		"/Q/apimanager/src/pages/resources/item.js",
+		"/Q/apimanager/src/services/queries/restfulfetcher.js",
+		"/Q/apimanager/src/components/breadcrumbs/readme.md",
+		"/Q/apimanager/src/components/buttons/index.js",
+		"/Q/apimanager/src/components/complextypesearch/index.js",
+		"/Q/apimanager/src/components/dependencyindicator/index.js",
+		"/Q/apimanager/src/components/filterable/index.js",
+		"/Q/apimanager/src/components/forms/resources/property/index.js",
+		"/Q/apimanager/src/components/forms/resources/property/namedescription.js",
+		"/Q/apimanager/src/components/forms/shared/delete.js",
+		"/Q/apimanager/src/components/forms/shared/nameanddescription.js",
+		"/Q/apimanager/src/components/forms/shared/selectbox.js",
+		"/Q/apimanager/src/components/higherordercomponents/index.js",
+		"/Q/apimanager/src/components/listitem/index.js",
+		"/Q/apimanager/src/components/modal/index.js",
+		"/Q/apimanager/src/components/tables/index.js",
+		"/Q/apimanager/src/components/tables/properties.js",
+		"/Q/apimanager/src/pages/handlers/item.js",
+		"/Q/apimanager/package.json",
+		"/Q/apimanager/src/services/wizard/index.js",
+		"/Q/apimanager/src/components/breadcrumbs/index.js",
+		"/Q/apimanager/src/components/globalsearch/index.js",
+		"/Q/apimanager/src/components/globalsearch/searchitem.js",
+		"/Q/apimanager/src/components/handleempty/index.js",
+		"/Q/apimanager/src/components/handleroptions/index.js",
+		"/Q/apimanager/src/components/forms/shared/namedescription.js",
+		"/Q/apimanager/src/components/forms/shared/saveandcancelactions.js",
+		"/Q/apimanager/src/components/forms/shared/summary.js",
+		"/Q/apimanager/src/components/infinitscroll/index.js",
+		"/Q/apimanager/src/components/menu/index.js",
+		"/Q/apimanager/src/components/methods/index.js",
+		"/Q/apimanager/src/components/resourceoptions/index.js",
+		"/Q/apimanager/src/components/save/index.js",
+		"/Q/apimanager/src/components/search/index.js",
+		"/Q/apimanager/src/components/search/searchitem.js",
+		"/Q/apimanager/src/components/tables/actions.js",
+		"/Q/apimanager/src/components/tables/collections.js",
+		"/Q/apimanager/src/components/tables/enumerationproperties.js",
+		"/Q/apimanager/src/components/tables/handlers.js",
+		"/Q/apimanager/src/components/tables/resources.js",
+		"/Q/apimanager/src/components/uploader/index.js",
+		"/Q/apimanager/src/components/complextypesearch/item.js",
+		"/Q/apimanager/node_modules/react/package.json",
+		"/Q/apimanager/node_modules/react/index.js",
+		"/Q/apimanager/node_modules/react/README.md",
+		"/Q/apimanager/src/reducers/index.js",
+		"/Q/apimanager/README.md",
+		"/Q/apimanager/node_modules/react-scripts/bin/react-scripts.js",
+		"/Q/apimanager/node_modules/react-scripts/scripts/start.js",
+		"/Q/apimanager/src/app.js",
+		"/Q/apimanager/package-lock.json",
+		"/Q/apimanager/node_modules/react/LICENSE",
+		"/Q/apimanager/.nmprc",
+		"/C/Program Files/Hitachi/HDID/db/config/profile.cfg",
+		"/E/trace/nodeprofilewriter-6364-000001.tra",
+		"/Q/ZEN-18991-HBB/shared/core/base/winsysteminfo.cpp",
+		"/E/trace/nodeprofilewriter-6908-000001.tra",
+		"/E/trace/nodeprofilewriter-1184-000001.tra",
+		"/E/trace/nodeprofilewriter-6156-000001.tra",
+		"/C/Program Files/Hitachi/HDID/db/config/nodelist/AMC-WIN-DEV@BT-XRTQWX-RRWTRT-SSQWUW-RTRXRQ[0-1-1].cfg",
+		"/E/trace/ui-controller-2852-000001.tra",
+		"/E/trace/hub-manager-190918142435-000001.tra",
+		"/C/development/tools/scripts/reset.bat",
+		"/E/trace/hub-manager-190918142122-000001.tra",
+		"/E/trace/hub-manager-190918142137-000001.tra",
+		"/E/trace/log-daemon-2352-000001.tra"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "infinitefear.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 198.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

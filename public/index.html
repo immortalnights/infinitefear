@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="module" src="main.js"></script>
+
+		<style type="text/css">
+			.flex-container {
+				display: flex;
+				flex-direction: row;
+			}
+
+			.flex-container.column {
+				flex-direction: column;
+			}
+
+			.flex-container.stretch {
+
+			}
+
+			.flex-container.space {
+				justify-content: space-between;
+			}
+			.flex-container.center {
+				justify-content: center;
+				align-content: center;
+			}
+
+			.flex-container.space > div {
+				display: flex;
+				flex: 1 0 0;
+			}
+
+			.flex-container.center > div {
+				display: flex;
+				flex: 0 1 0;
+			}
+
+			.control {
+			}
+
+			.control > button {
+				display: block;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="flex-container column center">
+				<div><p>You have <strong id="fearvalue">0</strong> fear</p></div>
+				<div><p>You are producing <strong id="productionvalue">0</strong> fear per second</p></div>
+			</section>
+
+			<section id="producers"></section>
+		</main>
+	</body>
+</html>
