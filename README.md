@@ -1,0 +1,2 @@
+# infinitefear
+Idle game
