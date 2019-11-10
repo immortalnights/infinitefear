@@ -2,6 +2,7 @@ import Game from './game.js';
 
 window.addEventListener('DOMContentLoaded', () => {
 	let game = new Game();
+	window.game = game;
 
 	let last = Date.now();
 	const fn = function() {
