@@ -13,8 +13,8 @@
 				flex-direction: column;
 			}
 
-			.flex-container.stretch {
-
+			.flex-container.stretch > div {
+				flex-grow: 1;
 			}
 
 			.flex-container.space {
@@ -26,13 +26,7 @@
 			}
 
 			.flex-container.space > div {
-				display: flex;
 				flex: 1 0 0;
-			}
-
-			.flex-container.center > div {
-				display: flex;
-				flex: 0 1 0;
 			}
 
 			.control {
@@ -46,9 +40,16 @@
 	</head>
 	<body>
 		<main>
-			<section class="flex-container column center">
-				<p>You have <strong id="fearvalue">0</strong> fear</p>
-				<p>You are producing <strong id="productionvalue">0</strong> fear per second</p>
+			<section class="flex-container space">
+				<div></div>
+				<div style="text-align: center">
+					<p style="display: none;">You have <strong id="terrorvalue">0</strong> terror</p>
+					<p>You have <strong id="fearvalue">0</strong> fear</p>
+					<p>You are producing <strong id="productionvalue">0</strong> fear per second</p>
+				</div>
+				<div class="flex-container center" style="text-align: center">
+					<button type="button" name="reset" id="invokespook">Spook!</button>
+				</div>
 			</section>
 
 			<section>
@@ -59,6 +60,10 @@
 			<section>
 				<h2>Boosters</h2>
 				<div id="boosters" class="flex-container column center"></div>
+			</section>
+
+			<section>
+				
 			</section>
 		</main>
 	</body>

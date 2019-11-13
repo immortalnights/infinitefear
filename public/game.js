@@ -9,6 +9,7 @@ import ReplicateBooster from './replicatebooster.js';
 const PRODUCERS = [{
 	id: 'scarypumpkin',
 	name: 'Scary Pumpkin',
+	baseCost: 1,
 	cost: 0,
 	production: 1,
 	multiplier: 0,
@@ -16,6 +17,7 @@ const PRODUCERS = [{
 }, {
 	id: 'creepyspider',
 	name: 'Creepy Spider',
+	baseCost: 10,
 	cost: 10,
 	production: 3,
 	multiplier: 0,
@@ -23,6 +25,7 @@ const PRODUCERS = [{
 }, {
 	id: 'wobblyskeleton',
 	name: 'Wobbly Skeleton',
+	baseCost: 100,
 	cost: 100,
 	production: 8,
 	multiplier: 0,
@@ -64,6 +67,7 @@ const BOOSTERS = [{
 
 class Player {
 	fear = 0;
+	terror = 0;
 }
 
 export default class Game {
@@ -126,6 +130,7 @@ export default class Game {
 
 	render()
 	{
+		this.terrorEl = document.getElementById('terrorvalue');
 		this.fearEl = document.getElementById('fearvalue');
 		this.productionEl = document.getElementById('productionvalue');
 
@@ -155,9 +160,31 @@ export default class Game {
 			return b;
 		});
 
+		const spookBtn = document.getElementById('invokespook');
+		spookBtn.addEventListener('click', (event) => {
+			// if (this.player.fear < 1000)
+			{
+				// apply terror
+				this.player.terror = Math.floor(this.player.fear / (1000 * ((1 + this.player.terror) * .03)));
+				this.player.fear = 0;
 
+				// reset the producers
+				this.producers.forEach((prod) => {
+					prod.multiplier = 0;
+					prod.cost = prod.baseCost * (1 + (.03 * (this.player.terror)));
+					// prod.baseCost = prod.baseCost * 1.3;
+				});
+
+			}
+		});
 
 		this.render = () => {
+			if (this.player.terror > 0)
+			{
+				this.terrorEl.parentNode.style.display = 'block';
+			}
+
+			this.terrorEl.innerText = (this.player.terror < 10000 ? this.player.terror.toFixed(2) : this.player.terror.toExponential(2));
 			this.fearEl.innerText = (this.player.fear < 10000 ? this.player.fear.toFixed(2) : this.player.fear.toExponential(2));
 			this.productionEl.innerText = (this.production < 10000 ? this.production.toFixed(2) : this.production.toExponential(2));
 

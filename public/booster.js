@@ -22,6 +22,7 @@ export default class Booster {
 		let buttonContainer = document.createElement('div');
 		buttonContainer.className = 'control';
 		let buttonEl = document.createElement('button');
+		buttonEl.type = 'button';
 		buttonEl.innerText = "Boost";
 		buttonContainer.append(buttonEl);
 		this.el.append(buttonContainer);

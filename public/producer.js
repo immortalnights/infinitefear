@@ -5,12 +5,12 @@ export default class Producer {
 	constructor(parent, options)
 	{
 		this.parent = parent;
-		this.id = options.id;
-		this.name = options.name;
-		this.production = options.production;
-		this.multiplier = options.multiplier;
-		this.cost = options.cost;
-		this.available = options.available;
+		Object.assign(this, options);
+		// this.name = options.name;
+		// this.production = options.production;
+		// this.multiplier = options.multiplier;
+		// this.cost = options.cost;
+		// this.available = options.available;
 
 		this.el = document.createElement(this.tagName);
 		this.el.className = 'flex-container flex-horizontal space';
@@ -30,6 +30,7 @@ export default class Producer {
 		let buttonContainer = document.createElement('div');
 		buttonContainer.className = 'control';
 		let buttonEl = document.createElement('button');
+		buttonEl.type = 'button';
 		buttonContainer.append(buttonEl);
 		this.el.append(buttonContainer);
 
