@@ -6,10 +6,6 @@ export default class CooldownBooster extends Booster {
 	constructor(options)
 	{
 		super(options);
-
-		this.charge = 0;
-		this.boost = options.boost;
-		this.multiplier = options.multiplier;
 	}
 
 	ready()
@@ -17,9 +13,10 @@ export default class CooldownBooster extends Booster {
 		return this.charge === 100;
 	}
 
-	activated()
+	activated(player)
 	{
 		this.charge = 0;
+		player.fear = player.fear + this.boost;
 	}
 
 	update()

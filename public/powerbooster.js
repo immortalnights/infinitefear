@@ -6,21 +6,17 @@ export default class PowerBooster extends Booster {
 	constructor(options)
 	{
 		super(options);
-
-		this.cost = 10;
-		this.charge = 0;
-		this.boost = options.boost;
-		this.multiplier = options.multiplier;
-	}
-
-	activated()
-	{
-		this.charge = this.charge - this.cost;
 	}
 
 	ready()
 	{
 		return this.charge > this.cost;
+	}
+
+	activated(player)
+	{
+		this.charge = this.charge - this.cost;
+		player.fear = player.fear + this.boost;
 	}
 
 	update()

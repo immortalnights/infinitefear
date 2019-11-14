@@ -6,22 +6,14 @@ export default class ChargeBooster extends Booster {
 	constructor(options)
 	{
 		super(options);
-
-		this.boost = options.boost;
-		this.multiplier = options.multiplier;
-		this.charge = 0;
 	}
 
 	ready()
 	{
-		if (this.charge === 100)
-		{
-			this.boost = this.boost * 100;
-		}
 		return true;
 	}
 
-	activated()
+	activated(player)
 	{
 		if (this.charge === 0)
 		{
@@ -30,7 +22,7 @@ export default class ChargeBooster extends Booster {
 		else if (this.charge === 100)
 		{
 			this.charge = 0;
-			this.boost = 1;
+			player.fear = player.fear + this.boost;
 		}
 		else
 		{
@@ -40,11 +32,10 @@ export default class ChargeBooster extends Booster {
 
 	update()
 	{
-
 	}
 
 	render()
 	{
-		this.ui.label.innerText = this.boost.toFixed(2) + ' [' + this.charge.toFixed(2) + ']';
+		this.ui.label.innerText = (this.charge === 100 ? this.boost.toFixed(2) : 0) + ' [' + this.charge.toFixed(2) + ']';
 	}
 }

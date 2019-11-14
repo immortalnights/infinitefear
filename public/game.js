@@ -5,6 +5,7 @@ import ChargeBooster from './chargebooster.js';
 import PowerBooster from './powerbooster.js';
 import CooldownBooster from './cooldownbooster.js';
 import ReplicateBooster from './replicatebooster.js';
+import Upgrade from './upgrade.js';
 
 const PRODUCERS = [{
 	id: 'scarypumpkin',
@@ -36,15 +37,16 @@ const BOOSTERS = [{
 	id: 'upcharge',
 	type: ChargeBooster,
 	name: 'Up Charge',
+	description: "click increase charge, at max chage produces a lot of fear",
 	cost: 0,
-	boost: 1,
+	boost: 100,
 	multiplier: 1
 }, {
 	id: 'powerbooster',
 	type: PowerBooster,
 	name: 'Power Booster',
 	description: "click uses power, if boost take power < 0 delay for reset. Power increase over time, boost stays the same",
-	cost: 0,
+	cost: 10,
 	boost: 18,
 	multiplier: 1
 }, {
@@ -65,9 +67,37 @@ const BOOSTERS = [{
 	multiplier: 1
 }];
 
+const UPGRADES = [{
+	id: 'productionupgrade',
+	name: 'Production Upgrade',
+	description: "Increases all fear producted by producers by {value}%",
+	cost: 1
+}, {
+	id: 'upchargeboosterupgrade',
+	name: 'Up Charge Upgrade',
+	description: "Increases charge generation of booster by {value}%",
+	cost: 1
+}, {
+	id: 'powerboosterupgrade',
+	name: 'Power Booster Rate Upgrade',
+	description: "Increases charge generation of booster by {value}%",
+	cost: 1
+}, {
+	id: 'cooldownboosterupgrade',
+	name: 'Cooldown Booster Upgrade',
+	description: "Decreases cooldown time of booster by {value}%",
+	cost: 1
+}, {
+	id: 'replicateboosterupgrade',
+	name: 'Replicate Booster Upgrade',
+	description: "Increases maximum replication by {value}%",
+	cost: 1
+}];
+
 class Player {
 	fear = 0;
 	terror = 0;
+	spooked = 0;
 }
 
 export default class Game {
@@ -77,6 +107,7 @@ export default class Game {
 		this.production = 0;
 		this.producers = [];
 		this.boosters = [];
+		this.upgrades = [];
 	}
 
 	buy(producer)
@@ -91,14 +122,51 @@ export default class Game {
 
 	boost(booster)
 	{
-		if (booster.ready())
+		if (booster.ready(this.player))
 		{
-			this.player.fear = this.player.fear + booster.boost;
-			booster.activated();
+			booster.activated(this.player);
 		}
 		else
 		{
 			console.log(`'${booster.name}' is not ready`);
+		}
+	}
+
+	upgrade(upgrade)
+	{
+		if (upgrade.ready(this.player))
+		{
+			upgrade.activated(this, this.player);
+		}
+		else
+		{
+			console.log(`'${upgrade.name}' is not ready`);
+		}
+	}
+
+	spook(event)
+	{
+		if (this.player.fear >= 1000)
+		{
+			while (this.player.fear >= 1000)
+			{
+				// apply terror
+				this.player.terror = this.player.terror + (.1 / (1 + this.player.terror));
+				this.player.fear = this.player.fear - 1000;
+				this.player.spooked += 1;
+			}
+
+			this.player.fear = 1000;
+
+			// reset the producers
+			this.producers.forEach((prod) => {
+				prod.multiplier = 0;
+				prod.cost = prod.baseCost + (prod.baseCost * (this.player.spooked * .0013));
+			});
+
+			this.boosters.forEach((booster) => {
+				booster.charge = 0;
+			});
 		}
 	}
 
@@ -136,6 +204,7 @@ export default class Game {
 
 		let producersContainerEl = document.getElementById('producers');
 		this.producers = PRODUCERS.map((item) => {
+			console.log(`Initialize '${Producer.name}' '${item.name}`);
 			let p = new Producer(producersContainerEl, item);
 			let el = p.attach();
 			el.addEventListener('click', (event) => {
@@ -149,6 +218,7 @@ export default class Game {
 
 		let boosterContainerEl = document.getElementById('boosters');
 		this.boosters = BOOSTERS.map((item) => {
+			console.log(`Initialize '${item.type.name}'`);
 			let b = new (item.type)(item);
 			let el = b.attach(boosterContainerEl);
 			el.addEventListener('click', (event) => {
@@ -160,23 +230,22 @@ export default class Game {
 			return b;
 		});
 
-		const spookBtn = document.getElementById('invokespook');
-		spookBtn.addEventListener('click', (event) => {
-			// if (this.player.fear < 1000)
-			{
-				// apply terror
-				this.player.terror = Math.floor(this.player.fear / (1000 * ((1 + this.player.terror) * .03)));
-				this.player.fear = 0;
-
-				// reset the producers
-				this.producers.forEach((prod) => {
-					prod.multiplier = 0;
-					prod.cost = prod.baseCost * (1 + (.03 * (this.player.terror)));
-					// prod.baseCost = prod.baseCost * 1.3;
-				});
-
-			}
+		let upgradeContainerEl = document.getElementById('upgrades');
+		this.upgrades = UPGRADES.map((item) => {
+			console.log(`Initialize '${Upgrade.name}'`);
+			let u = new Upgrade(item);
+			let el = u.attach(upgradeContainerEl);
+			el.addEventListener('click', (event) => {
+				if (event.target.tagName === 'BUTTON')
+				{
+					this.upgrade(u);
+				}
+			});
+			return u;
 		});
+
+		const spookBtn = document.getElementById('invokespook');
+		spookBtn.addEventListener('click', this.spook.bind(this));
 
 		this.render = () => {
 			if (this.player.terror > 0)
@@ -190,9 +259,9 @@ export default class Game {
 
 			this.producers.forEach(p => p.render());
 			this.boosters.forEach(b => b.render());
+			this.upgrades.forEach(u => u.render());
 		}
 
 		this.render();
-
 	}
 }

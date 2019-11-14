@@ -1,12 +1,8 @@
 'use strict';
 
-export default class Booster {
-	tagName = 'div';
-	id = undefined;
-	name = undefined;
-
-	charge = 0;
-	boost = 0;
+export default class ReplicateBooster {
+	// terror cost
+	cost = 0;
 
 	constructor(options)
 	{
@@ -25,7 +21,7 @@ export default class Booster {
 		buttonContainer.className = 'control';
 		let buttonEl = document.createElement('button');
 		buttonEl.type = 'button';
-		buttonEl.innerText = "Boost";
+		buttonEl.innerText = "Upgrade";
 		buttonContainer.append(buttonEl);
 		this.el.append(buttonContainer);
 
@@ -40,12 +36,55 @@ export default class Booster {
 		this.ui.label = boostLabelContainer;
 	}
 
-	ready()
+	ready(player)
 	{
+		return player.terror >= this.cost;
 	}
 
-	activated()
+	activated(game)
 	{
+		const player = game.player;
+		if (player.terror >= this.cost)
+		{
+			this.upgrade.call(this, game, player);
+		}
+	}
+
+	upgrade(game, player)
+	{
+		switch (this.id)
+		{
+			case 'productionupgrade':
+			{
+				game.producers.forEach(function(item) {
+					item.production = item.production * 1.01;
+				});
+				break;
+			}
+			case 'upchargeboostupgrade':
+			{
+				break;
+			}
+			case 'powerbooster':
+			{
+				break;
+			}
+			case 'productionupgrade':
+			{
+				break;
+			}
+			case 'replicateboosterupgrade':
+			{
+				break;
+			}
+			default:
+			{
+				console.assert(false, `Unknown upgrade '${this.name}' (${this.id})`);
+				break;
+			}
+		}
+
+		player.terror = player.terror - this.cost;
 	}
 
 	attach(parent)
@@ -54,11 +93,8 @@ export default class Booster {
 		return this.el;
 	}
 
-	update()
-	{
-	}
-
 	render()
 	{
+
 	}
 }

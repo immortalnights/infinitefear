@@ -3,18 +3,15 @@
 import Booster from './booster.js';
 
 export default class ReplicateBooster extends Booster {
+
 	constructor(options)
 	{
 		super(options);
-
-		this.cost = 10;
-		this.charge = 0;
-		this.boost = options.boost;
-		this.multiplier = options.multiplier;
 	}
 
-	activated()
+	activated(player)
 	{
+		player.fear = player.fear + this.boost;
 	}
 
 	ready()
@@ -24,7 +21,7 @@ export default class ReplicateBooster extends Booster {
 
 	update()
 	{
-		this.boost = Math.min(window.game.production, window.game.player.fear / 10, this.boost + .01);
+		this.boost = Math.min(window.game.production * .3, window.game.player.fear / 10, this.boost + .01);
 	}
 
 	render()

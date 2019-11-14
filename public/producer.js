@@ -1,16 +1,14 @@
 export default class Producer {
 	tagName = 'div';
+	cost = 0;
+	production = 0;
+	multiplier = 0;
 	unlockProgress = 0;
 
 	constructor(parent, options)
 	{
 		this.parent = parent;
 		Object.assign(this, options);
-		// this.name = options.name;
-		// this.production = options.production;
-		// this.multiplier = options.multiplier;
-		// this.cost = options.cost;
-		// this.available = options.available;
 
 		this.el = document.createElement(this.tagName);
 		this.el.className = 'flex-container flex-horizontal space';
