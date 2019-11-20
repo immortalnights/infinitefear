@@ -1,6 +1,7 @@
 'use strict';
 
 export default class ReplicateBooster {
+	tagName = 'div';
 	// terror cost
 	cost = 0;
 
@@ -22,6 +23,7 @@ export default class ReplicateBooster {
 		let buttonEl = document.createElement('button');
 		buttonEl.type = 'button';
 		buttonEl.innerText = "Upgrade";
+		buttonEl.setAttribute('title', this.description);
 		buttonContainer.append(buttonEl);
 		this.el.append(buttonContainer);
 
@@ -52,29 +54,41 @@ export default class ReplicateBooster {
 
 	upgrade(game, player)
 	{
+		const upgradeBooster = function(boosterId) {
+			const booster = game.boosters.find(function(b) {
+				return b.id === boosterId;
+			});
+
+			booster.upgrade(player);
+		}
+
 		switch (this.id)
 		{
 			case 'productionupgrade':
 			{
 				game.producers.forEach(function(item) {
-					item.production = item.production * 1.01;
+					item.upgrade(player);
 				});
 				break;
 			}
-			case 'upchargeboostupgrade':
+			case 'upchargeboosterupgrade':
 			{
+				upgradeBooster('upcharge');
 				break;
 			}
-			case 'powerbooster':
+			case 'powerboosterupgrade':
 			{
+				upgradeBooster('powerbooster');
 				break;
 			}
-			case 'productionupgrade':
+			case 'cooldownboosterupgrade':
 			{
+				upgradeBooster('cooldownbooster');
 				break;
 			}
 			case 'replicateboosterupgrade':
 			{
+				upgradeBooster('replicatebooster');
 				break;
 			}
 			default:

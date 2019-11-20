@@ -7,6 +7,7 @@ export default class Booster {
 
 	charge = 0;
 	boost = 0;
+	level = 0;
 
 	constructor(options)
 	{
@@ -46,6 +47,17 @@ export default class Booster {
 
 	activated()
 	{
+	}
+
+	upgrade(player)
+	{
+		this.level = this.level + 1;
+		this.reset(player);
+	}
+
+	reset(player)
+	{
+		this.charge = 0;
 	}
 
 	attach(parent)

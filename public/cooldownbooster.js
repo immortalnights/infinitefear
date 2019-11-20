@@ -6,6 +6,9 @@ export default class CooldownBooster extends Booster {
 	constructor(options)
 	{
 		super(options);
+
+		this.baseDuration = 30;
+		this.duration = this.baseDuration;
 	}
 
 	ready()
@@ -19,12 +22,24 @@ export default class CooldownBooster extends Booster {
 		player.fear = player.fear + this.boost;
 	}
 
-	update()
+	upgrade(player)
+	{
+		super.upgrade(player);
+		console.debug("Cooldown booster duration now", this.duration);
+	}
+
+	reset(player)
+	{
+		this.charge = 0;
+		this.duration = this.baseDuration - (0.5 * this.level);
+	}
+
+	update(delta)
 	{
 		if (this.charge < 100)
 		{
-			this.charge = this.charge + 0.08;
-			this.charge = Math.min(this.charge, 100);
+			let inc = (100 / this.duration) * delta;
+			this.charge = Math.min(this.charge + inc, 100);
 		}
 	}
 

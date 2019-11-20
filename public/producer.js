@@ -1,14 +1,25 @@
+'use strict';
+
 export default class Producer {
 	tagName = 'div';
-	cost = 0;
-	production = 0;
-	multiplier = 0;
-	unlockProgress = 0;
+	defaults = {
+		level: 0,
+		cost: 0,
+		baseCost: 0,
+		production: 0,
+		baseProduction: 0,
+		multiplier: 0,
+		unlockProgress: 0
+	}
 
 	constructor(parent, options)
 	{
 		this.parent = parent;
+		Object.assign(this, this.defaults);
 		Object.assign(this, options);
+
+		this.baseCost = this.cost || 1;
+		this.baseProduction = this.production;
 
 		this.el = document.createElement(this.tagName);
 		this.el.className = 'flex-container flex-horizontal space';
@@ -29,6 +40,7 @@ export default class Producer {
 		buttonContainer.className = 'control';
 		let buttonEl = document.createElement('button');
 		buttonEl.type = 'button';
+		// buttonEl.setAttribute('title', this.description);
 		buttonContainer.append(buttonEl);
 		this.el.append(buttonContainer);
 
@@ -38,14 +50,36 @@ export default class Producer {
 		this.ui.buttonEl = buttonEl;
 	}
 
+	buy()
+	{
+		this.level = this.level + 1;
+		this.cost = this.baseCost * Math.pow(1.09, this.level);
+		this.multiplier = this.multiplier + 0.2;
+	}
+
+	upgrade(player)
+	{
+		this.baseProduction = this.baseProduction + 0.01;
+	}
+
+	reset(player)
+	{
+		this.level = 0;
+		this.cost = this.baseCost;
+		this.multiplier = 0;
+		this.production = this.baseProduction + (0.002 * player.terror);
+	}
+
 	attach()
 	{
 		this.parent.append(this.el);
 		return this.el;
 	}
 
-	update()
+	update(delta, game)
 	{
+		const player = game.player;
+		this.production = this.baseProduction + (0.002 * player.terror);
 	}
 
 	render()

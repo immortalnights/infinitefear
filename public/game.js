@@ -70,7 +70,7 @@ const BOOSTERS = [{
 const UPGRADES = [{
 	id: 'productionupgrade',
 	name: 'Production Upgrade',
-	description: "Increases all fear producted by producers by {value}%",
+	description: "Increases all fear produced by producers by 0.1",
 	cost: 1
 }, {
 	id: 'upchargeboosterupgrade',
@@ -97,12 +97,40 @@ const UPGRADES = [{
 class Player {
 	fear = 0;
 	terror = 0;
+	// total number spooks
 	spooked = 0;
+
+	constructor()
+	{
+		this.lastSpook = Date.now();
+	}
+
+	spook(cost)
+	{
+		console.debug("Spook duration", Date.now() - this.lastSpook);
+		this.terror = this.terror + 1;
+		this.fear = this.fear - cost;
+		this.spooked = this.spooked + 1;
+		this.lastSpook = Date.now();
+	}
+
+	nextSpookCost()
+	{
+		return 666 * Math.pow(1 + this.spooked, 1.11);
+	}
+
+	nextHarvestCost()
+	{
+		return false;
+	}
 }
+
+
 
 export default class Game {
 	constructor()
 	{
+		console.time('firstspook');
 		this.player = new Player();
 		this.production = 0;
 		this.producers = [];
@@ -115,8 +143,7 @@ export default class Game {
 		if (this.player.fear >= producer.cost)
 		{
 			this.player.fear = this.player.fear - producer.cost;
-			producer.cost = 1 + (producer.cost * 1.15);
-			producer.multiplier = producer.multiplier + 0.1;
+			producer.buy(this, this.player);
 		}
 	}
 
@@ -144,28 +171,25 @@ export default class Game {
 		}
 	}
 
+	// reset
 	spook(event)
 	{
-		if (this.player.fear >= 1000)
+		let cost = this.player.nextSpookCost();
+		if (this.player.fear >= cost)
 		{
-			while (this.player.fear >= 1000)
+			while (this.player.fear >= cost)
 			{
-				// apply terror
-				this.player.terror = this.player.terror + (.1 / (1 + this.player.terror));
-				this.player.fear = this.player.fear - 1000;
-				this.player.spooked += 1;
+				this.player.spook(cost);
+				cost = this.player.nextSpookCost();
 			}
-
-			this.player.fear = 1000;
 
 			// reset the producers
 			this.producers.forEach((prod) => {
-				prod.multiplier = 0;
-				prod.cost = prod.baseCost + (prod.baseCost * (this.player.spooked * .0013));
+				prod.reset(this.player);
 			});
 
 			this.boosters.forEach((booster) => {
-				booster.charge = 0;
+				booster.reset(this.player);
 			});
 		}
 	}
@@ -184,13 +208,13 @@ export default class Game {
 		// this.producers.update();
 
 		this.producers.forEach((producer) => {
-			producer.update();
+			producer.update(delta, game);
 			producer.available = (player.fear >= producer.cost);
 			producer.unlockProgress = producer.available ? 100 : (player.fear > 0 ? (player.fear / producer.cost) * 100 : 0);
 		});
 
 		this.boosters.forEach((booster) => {
-			booster.update();
+			booster.update(delta, game);
 			// booster.available = (player.fear >= booster.cost);
 			// booster.unlockProgress = booster.available ? 100 : (player.fear > 0 ? (player.fear / booster.cost) * 100 : 0);
 		});
@@ -256,6 +280,18 @@ export default class Game {
 			this.terrorEl.innerText = (this.player.terror < 10000 ? this.player.terror.toFixed(2) : this.player.terror.toExponential(2));
 			this.fearEl.innerText = (this.player.fear < 10000 ? this.player.fear.toFixed(2) : this.player.fear.toExponential(2));
 			this.productionEl.innerText = (this.production < 10000 ? this.production.toFixed(2) : this.production.toExponential(2));
+
+			const spookCost = this.player.nextSpookCost();
+			const spookProgress = this.player.fear / spookCost;
+			if (this.player.fear < spookCost)
+			{
+				spookBtn.setAttribute('disabled', true);
+			}
+			else
+			{
+				spookBtn.removeAttribute('disabled');
+			}
+			spookBtn.innerHTML = 'Spook!<br />' + spookCost.toFixed(0) + '<br />[' + Math.min(spookProgress * 100, 100).toFixed(2) + '%]';
 
 			this.producers.forEach(p => p.render());
 			this.boosters.forEach(b => b.render());
