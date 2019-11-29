@@ -4,6 +4,7 @@ export default class ReplicateBooster {
 	tagName = 'div';
 	// terror cost
 	cost = 0;
+	level = 0;
 
 	constructor(options)
 	{
@@ -40,7 +41,20 @@ export default class ReplicateBooster {
 
 	ready(player)
 	{
-		return player.terror >= this.cost;
+		let ok = false;
+		if (player.terror < this.cost)
+		{
+			console.error(`Cannot affod upgrade '${this.name}'`);
+		}
+		else if (this.level >= this.maxLevel)
+		{
+			console.error(`Upgrade '${this.name}' has reached maximum level`);
+		}
+		else
+		{
+			ok = true;
+		}
+		return ok;
 	}
 
 	activated(game)
@@ -91,6 +105,11 @@ export default class ReplicateBooster {
 				upgradeBooster('replicatebooster');
 				break;
 			}
+			case 'terrifyproducers':
+			{
+				player.upgrades.terrifyproducers = true;
+				break;
+			}
 			default:
 			{
 				console.assert(false, `Unknown upgrade '${this.name}' (${this.id})`);
@@ -98,6 +117,7 @@ export default class ReplicateBooster {
 			}
 		}
 
+		this.level = this.level + 1;
 		player.terror = player.terror - this.cost;
 	}
 

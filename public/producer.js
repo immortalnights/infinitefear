@@ -67,7 +67,17 @@ export default class Producer {
 		this.level = 0;
 		this.cost = this.baseCost;
 		this.multiplier = 0;
-		this.production = this.baseProduction + (0.002 * player.terror);
+		this.setProduction(player);
+	}
+
+	setProduction(player)
+	{
+		this.production = this.baseProduction;
+
+		if (player.upgrades.terrifyproducers)
+		{
+			this.production = this.production + (0.002 * player.terror);
+		}
 	}
 
 	attach()
@@ -79,7 +89,7 @@ export default class Producer {
 	update(delta, game)
 	{
 		const player = game.player;
-		this.production = this.baseProduction + (0.002 * player.terror);
+		this.setProduction(player);
 	}
 
 	render()

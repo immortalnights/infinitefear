@@ -37,9 +37,9 @@ const BOOSTERS = [{
 	id: 'upcharge',
 	type: ChargeBooster,
 	name: 'Up Charge',
-	description: "click increase charge, at max chage produces a lot of fear",
+	description: "click increase charge, at max charge produces a lot of fear",
 	cost: 0,
-	boost: 100,
+	boost: 25,
 	multiplier: 1
 }, {
 	id: 'powerbooster',
@@ -61,7 +61,7 @@ const BOOSTERS = [{
 	id: 'replicatebooster',
 	type: ReplicateBooster,
 	name: 'Replicate Booster',
-	description: "boost increaes over time, consumed when used max based on 'something' (maybe current fear?)",
+	description: "boost increases over time, consumed when used max based on 'something' (maybe current fear?)",
 	cost: 0,
 	boost: 1,
 	multiplier: 1
@@ -92,6 +92,12 @@ const UPGRADES = [{
 	name: 'Replicate Booster Upgrade',
 	description: "Increases maximum replication by {value}%",
 	cost: 1
+}, {
+	id: 'terrifyproducers',
+	name: 'Terrify Producers',
+	description: "Unspent terror provides increases producer production by {value}%",
+	cost: 25,
+	maxLevel: 1
 }];
 
 class Player {
@@ -99,6 +105,7 @@ class Player {
 	terror = 0;
 	// total number spooks
 	spooked = 0;
+	upgrades = {};
 
 	constructor()
 	{
@@ -201,6 +208,8 @@ export default class Game {
 			// console.log(total, current, index);
 			return total + (current.production * current.multiplier);
 		}, 0);
+
+		this.production = this.production + (player.fear * (player.terror * 0.000001));
 
 		player.fear = player.fear + (this.production * delta);
 		// this.fearEl.innerText = (this.fear < 10000 ? this.fear : this.fear.toExponential());
