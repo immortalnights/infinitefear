@@ -31,6 +31,38 @@ const PRODUCERS = [{
 	production: 8,
 	multiplier: 0,
 	available: false
+}, {
+	id: 'fourth',
+	name: 'Fourth',
+	baseCost: 1000,
+	cost: 1000,
+	production: 13,
+	multiplier: 0,
+	available: false
+}, {
+	id: 'fifth',
+	name: 'fifth',
+	baseCost: 10000,
+	cost: 10000,
+	production: 20,
+	multiplier: 0,
+	available: false
+}, {
+	id: 'sixth',
+	name: 'sixth',
+	baseCost: 100000,
+	cost: 100000,
+	production: 80,
+	multiplier: 0,
+	available: false
+}, {
+	id: 'seventh',
+	name: 'seventh',
+	baseCost: 1000000,
+	cost: 1000000,
+	production: 666,
+	multiplier: 0,
+	available: false
 }];
 
 const BOOSTERS = [{

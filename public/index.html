@@ -40,12 +40,29 @@
 	</head>
 	<body>
 		<main>
+			<div class="flex-container">
+				<div class="" style="padding: 10px; margin: 0 5px; text-align: center; width: 200px; height: 100px; border: 1px solid darkgray; position: relative">
+					<h4>Fear</h4>
+					<div id="fearvalue">0</div>
+					<div><small>At <strong id="productionvalue">0</strong> per second</small></div>
+				</div>
+				<div class="" style="padding: 10px; margin: 0 5px; text-align: center; width: 200px; height: 100px; border: 1px solid darkgray; position: relative">
+					<h4>Terror</h4>
+					<div id="terrorvalue">0</div>
+					<div><small>At 0 per second</small></div>
+				</div>
+				<div class="" style="padding: 10px; margin: 0 5px; text-align: center; width: 200px; height: 100px; border: 1px solid darkgray; position: relative">
+					<h4>Souls</h4>
+					<div>0</div>
+					<div><small>At 0 per second</small></div>
+				</div>
+			</div>
 			<section class="flex-container space">
-				<div></div>
+
 				<div style="text-align: center">
-					<p style="display: none;">You have <strong id="terrorvalue">0</strong> terror</p>
-					<p>You have <strong id="fearvalue">0</strong> fear</p>
-					<p>You are producing <strong id="productionvalue">0</strong> fear per second</p>
+					<p style="display: none;">You have <strong id="OLDterrorvalue">0</strong> terror</p>
+					<p>You have <strong id="OLDfearvalue">0</strong> fear</p>
+					<p>You are producing <strong id="OLDproductionvalue">0</strong> fear per second</p>
 				</div>
 				<div class="flex-container center" style="text-align: center">
 					<button type="button" name="spook" id="invokespook" disabled>Spook!<br />0<br />[0.00%]</button>
@@ -66,6 +83,16 @@
 			<section>
 				<h2>Upgrades</h2>
 				<div id="upgrades" class="flex-container column center"></div>
+			</section>
+
+			<section>
+					<h2>Souls</h2>
+					<div class="text-center">0% chance every 60s</div>
+					<div class="flex-container">
+						<div><button>Increase change</button></div>
+						<div><button>Increase frequency</button></div>
+						<div><button>Increase maximum</button></div>
+					</div>
 			</section>
 		</main>
 	</body>
