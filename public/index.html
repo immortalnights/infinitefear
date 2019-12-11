@@ -1,92 +1,43 @@
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<script type="module" src="main.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-		<style type="text/css">
-			.flex-container {
-				display: flex;
-				flex-direction: row;
-			}
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-			.flex-container.column {
-				flex-direction: column;
-			}
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-			.flex-container.stretch > div {
-				flex-grow: 1;
-			}
-
-			.flex-container.space {
-				justify-content: space-between;
-			}
-			.flex-container.center {
-				justify-content: center;
-				align-content: center;
-			}
-
-			.flex-container.space > div {
-				flex: 1 0 0;
-			}
-
-			.control {
-			}
-
-			.control > button {
-				display: block;
-				width: 100%;
-			}
-		</style>
-	</head>
-	<body>
-		<main>
-			<section class="flex-container space">
-				<div class="" style="padding: 10px; margin: 0 5px; text-align: center; width: 200px; border: 1px solid darkgray; position: relative">
-					<h5>Fear</h5>
-					<h4 id="fearvalue">0</h4>
-					<div><small>At <strong id="productionvalue">0</strong> per second</small></div>
-				</div>
-				<div class="" style="padding: 10px; margin: 0 5px; text-align: center; width: 200px; border: 1px solid darkgray; position: relative">
-					<h5>Terror</h5>
-					<h4 id="terrorvalue">0</h4>
-					<div><small>At 0 per second</small></div>
-				</div>
-				<div class="" style="padding: 10px; margin: 0 5px; text-align: center; width: 200px; border: 1px solid darkgray; position: relative">
-					<h5>Souls</h5>
-					<h4 id="soulsvalue">0</h4>
-					<div><small>At 0 per second</small></div>
-				</div>
-				<div class="flex-container center" style="text-align: center">
-					<button type="button" name="spook" id="invokespook" disabled>Spook!<br />0<br />[0.00%]</button>
-					<button type="button" name="harvest" id="invokespook" disabled>Terrorize!<br />0<br />[0.00%]</button>
-					<button type="button" name="nightmare" id="nightmare" disabled>Nightmare!<br />0<br />[0.00%]</button>
-				</div>
-			</section>
-
-			<section>
-				<h2>Producers</h2>
-				<div id="producers"></div>
-			</section>
-
-			<section>
-				<h2>Boosters</h2>
-				<div id="boosters" class="flex-container column center"></div>
-			</section>
-
-			<section>
-				<h2>Upgrades</h2>
-				<div id="upgrades" class="flex-container column center"></div>
-			</section>
-
-			<section>
-					<h2>Souls</h2>
-					<div class="text-center">0% chance every 60s</div>
-					<div class="flex-container">
-						<div><button>Increase change</button></div>
-						<div><button>Increase frequency</button></div>
-						<div><button>Increase maximum</button></div>
-					</div>
-			</section>
-		</main>
-	</body>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
 </html>
