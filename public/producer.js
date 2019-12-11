@@ -30,11 +30,14 @@ export default class Producer {
 		labelContainer.append(label);
 		this.el.append(labelContainer);
 
-		let productionEl = document.createElement('div');
-		this.el.append(productionEl);
+		let baseProductionEl = document.createElement('div');
+		this.el.append(baseProductionEl);
 
 		let multiplierEl = document.createElement('div');
 		this.el.append(multiplierEl);
+
+		let productionEl = document.createElement('div');
+		this.el.append(productionEl);
 
 		let buttonContainer = document.createElement('div');
 		buttonContainer.className = 'control';
@@ -45,8 +48,9 @@ export default class Producer {
 		this.el.append(buttonContainer);
 
 		this.ui = {};
-		this.ui.productionEl = productionEl;
+		this.ui.baseProductionEl = baseProductionEl;
 		this.ui.multiplierEl = multiplierEl;
+		this.ui.productionEl = productionEl;
 		this.ui.buttonEl = buttonEl;
 	}
 
@@ -94,8 +98,9 @@ export default class Producer {
 
 	render()
 	{
-		this.ui.productionEl.innerText = (this.production < 10000 ? this.production.toFixed(2) : this.production.toExponential(2));
+		this.ui.baseProductionEl.innerText = (this.production < 10000 ? this.production.toFixed(2) : this.production.toExponential(2));
 		this.ui.multiplierEl.innerText = 'x' + (this.multiplier < 10000 ? this.multiplier.toFixed(2) : this.multiplier.toExponential(2));
+		this.ui.productionEl.innerText = (this.production * this.multiplier).toFixed(2);
 
 		if (!this.available)
 		{
