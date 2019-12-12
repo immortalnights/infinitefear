@@ -22,6 +22,11 @@ export default class Producer extends React.Component {
 		return (this.state.production * this.state.multiplier) * this.state.quantity;
 	}
 
+	get level()
+	{
+		return this.state.level;
+	}
+
 	render()
 	{
 		const output = this.production;
@@ -40,6 +45,7 @@ export default class Producer extends React.Component {
 
 	handleUpgradeClick(event)
 	{
-		this.setState({ quantity: this.state.quantity + 1 });
+		// this.setState({ quantity: this.state.quantity + 1 });
+		this.props.upgrade(this.props.id);
 	}
 }

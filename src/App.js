@@ -1,92 +1,101 @@
 import React from 'react';
 import Producer from './Producer';
-import logo from './logo.svg';
 import './App.css';
 
-const PRODUCERS = [{
-	id: 'scarypumpkin',
-	name: 'Scary Pumpkin',
-	baseCost: 1,
-	cost: 0,
-	production: 1,
-	multiplier: 0,
-	available: false
-}, {
-	id: 'creepyspider',
-	name: 'Creepy Spider',
-	baseCost: 10,
-	cost: 10,
-	production: 3,
-	multiplier: 0,
-	available: false
-}, {
-	id: 'wobblyskeleton',
-	name: 'Wobbly Skeleton',
-	baseCost: 100,
-	cost: 100,
-	production: 8,
-	multiplier: 0,
-	available: false
-}, {
-	id: 'fourth',
-	name: 'Fourth',
-	baseCost: 1000,
-	cost: 1000,
-	production: 13,
-	multiplier: 0,
-	available: false
-}, {
-	id: 'fifth',
-	name: 'fifth',
-	baseCost: 10000,
-	cost: 10000,
-	production: 20,
-	multiplier: 0,
-	available: false
-}, {
-	id: 'sixth',
-	name: 'sixth',
-	baseCost: 100000,
-	cost: 100000,
-	production: 80,
-	multiplier: 0,
-	available: false
-}, {
-	id: 'seventh',
-	name: 'seventh',
-	baseCost: 1000000,
-	cost: 1000000,
-	production: 666,
-	multiplier: 0,
-	available: false
-}];
+import data from './data.json';
 
+const providerReducer = function(state, action) {
+	console.log("action", ...arguments);
 
-
-export default class App extends React.Component {
-
-	constructor(props)
+	switch (action)
 	{
-		super(props);
-
-		this.producers = PRODUCERS.map((producer) => (<Producer key={producer.id} {...producer} />) );
-		console.log("const");
+		case 'UPGRADE':
+		{
+			// state.producers.find()
+			break;
+		}
+		default:
+		{
+			return state;
+		}
 	}
+
+	return state;
+}
+
+const ProducerContext = React.createContext();
+
+
+class Producers extends React.Component {
+	static contextType = ProducerContext;
 
 	render()
 	{
-		let totalProduction = 0;
-		this.producers.forEach((p) => {
-			totalProduction = totalProduction + p.production;
-		});
+		const up = (id) => {
+			console.log("up", id);
+			this.context.upgrade(id);
+		};
 
+		console.log(this.props);
 		return (
 			<div>
-				<div>{totalProduction}</div>
-				<section>
-					{this.producers}
-				</section>
+				{this.props.producers.map((producer) => 
+					(<Producer key={producer.id} {...producer} upgrade={up} />)
+				)}
 			</div>
+		);
+	}
+}
+
+
+const ProducerProvider = function({totalProduction, children}) {
+	const [state, dispatch] = React.useReducer(providerReducer, data);
+
+	const value = {
+		producers: state.producers,
+		upgrade: (id) => {
+			console.debug("up", id);
+			dispatch('UPGRADE', id);
+		}
+	};
+
+	return (
+		<ProducerContext.Provider value={value}>
+			{children}
+		</ProducerContext.Provider>
+	);
+}
+
+const ProducerSection = function() {
+	const { producers } = React.useContext(ProducerContext);
+
+	let totalProduction = 0;
+	let totalLevels = 0;
+	// state.producers.forEach((p) => {
+	// 	totalProduction = totalProduction + p.production;
+	// 	totalLevels = totalLevels + p.level;
+	// });
+
+	return (
+		<>
+			<div>Total Production: {totalProduction}</div>
+			<div>Total Levels: {totalLevels}</div>
+			<Producers producers={producers} />
+		</>
+	);
+}
+
+
+		// <>
+		// <>
+
+export default class App extends React.Component {
+	render()
+	{
+		return (
+			<ProducerProvider>
+				<ProducerSection />
+			</ProducerProvider>
 		);
 	}
 }
