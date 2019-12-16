@@ -5,20 +5,13 @@ export default class Producer extends React.Component {
 	constructor(props)
 	{
 		super(props);
-		console.log("const");
-		this.state = {
-			cost: this.props.cost,
-			production: this.props.production,
-			multiplier: 1,
-			level: 0,
-			quantity: 0
-		};
+		console.log("const", props);
+		this.state = { ... this.props };
 		this.handleUpgradeClick = this.handleUpgradeClick.bind(this);
 	}
 
 	get production()
 	{
-		console.log("getter");
 		return (this.state.production * this.state.multiplier) * this.state.quantity;
 	}
 

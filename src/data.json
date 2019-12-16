@@ -6,6 +6,7 @@
 		"cost": 0,
 		"production": 1,
 		"multiplier": 0,
+		"quantity": 0,
 		"available": false
 	}, {
 		"id": "creepyspider",
@@ -14,6 +15,7 @@
 		"cost": 10,
 		"production": 3,
 		"multiplier": 0,
+		"quantity": 0,
 		"available": false
 	}, {
 		"id": "wobblyskeleton",
@@ -22,6 +24,7 @@
 		"cost": 100,
 		"production": 8,
 		"multiplier": 0,
+		"quantity": 0,
 		"available": false
 	}, {
 		"id": "fourth",
@@ -30,6 +33,7 @@
 		"cost": 1000,
 		"production": 13,
 		"multiplier": 0,
+		"quantity": 0,
 		"available": false
 	}, {
 		"id": "fifth",
@@ -38,6 +42,7 @@
 		"cost": 10000,
 		"production": 20,
 		"multiplier": 0,
+		"quantity": 0,
 		"available": false
 	}, {
 		"id": "sixth",
@@ -46,6 +51,7 @@
 		"cost": 100000,
 		"production": 80,
 		"multiplier": 0,
+		"quantity": 0,
 		"available": false
 	}, {
 		"id": "seventh",
@@ -54,6 +60,7 @@
 		"cost": 1000000,
 		"production": 666,
 		"multiplier": 0,
+		"quantity": 0,
 		"available": false
 	}]
 }
