@@ -1,6 +1,5 @@
 import React from 'react';
-// import Producer from './Producer';
-import ColorSelector from './ColorPicker';
+import Producers from './Producers';
 import './App.css';
 
 // import data from './data.json';
@@ -117,7 +116,9 @@ export default class App extends React.Component {
 	render()
 	{
 		return (
-			<ColorSelector />
+			<>
+				<Producers />
+			</>
 		);
 	}
 }
