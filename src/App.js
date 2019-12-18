@@ -1,8 +1,106 @@
 import React from 'react';
 import Producers from './Producers';
+import {ProducerContext} from './ProducerContext';
 import './App.css';
 
-// import data from './data.json';
+import data from './data.json';
+
+const ResourcesContext = React.createContext();
+// const ProducerContext = React.createContext();
+
+class Resource extends React.Component {
+	render()
+	{
+		return (
+			<div>
+				<h4>{this.props.id}</h4>
+				<div>{this.props.value}</div>
+				<div>{this.props.production}</div>
+			</div>
+		);
+	}
+}
+
+class FearResource extends React.Component {
+	constructor(props)
+	{
+		super(props);
+	}
+
+	render()
+	{
+		const totalProduction = this.props.producers.reduce(function(value, item) {
+			const production = ((item.production * item.quantity) * item.multiplier);
+			return value + production;
+		}, 0);
+
+		return (<Resource id={this.props.id} value={this.props.value} production={totalProduction} />);
+	}
+}
+class TerrorResource extends React.Component {
+	constructor(props)
+	{
+		super(props);
+	}
+
+	render()
+	{
+		// console.log("->", this.props, this.state, this.context);
+		return (<Resource id={this.props.id} value={this.props.value} />);
+	}
+}
+class SoulsResource extends React.Component {
+	constructor(props)
+	{
+		super(props);
+	}
+
+	render()
+	{
+		// console.log("->", this.props, this.state, this.context);
+		return (<Resource id={this.props.id} value={this.props.value} />);
+	}
+}
+
+
+class ResourceList extends React.Component {
+	static contextType = ResourcesContext;
+
+	render()
+	{
+		// console.log("->", this.props, this.state, this.context);
+
+		const fear = this.context.find(function(item) {
+			return item.id === 'fear';
+		});
+		const terror = this.context.find(function(item) {
+			return item.id === 'terror';
+		});
+		const souls = this.context.find(function(item) {
+			return item.id === 'souls';
+		});
+
+		return (
+			<>
+				<ProducerContext.Consumer>
+					{(producers) => (<FearResource {...fear} producers={producers} />)}
+				</ProducerContext.Consumer>
+				<TerrorResource {...terror} />
+				<SoulsResource {...souls} />
+			</>
+		);
+		// 	<ProducerContext.Consumer>
+		// 		{(producers) => (
+		// 			<ResourcesContext.Consumer>
+		// 			{(resources) => (
+		// 				<div>{producers.map(o => o.id)}, {resources.map(o => o.id)}</div>
+		// 			)}
+		// 			</ResourcesContext.Consumer>
+		// 		)}
+		// 	</ProducerContext.Consumer>
+		// );
+	}
+}
 
 // const providerReducer = function(state, action) {
 // 	console.log("action", action);
@@ -112,13 +210,38 @@ import './App.css';
 // 	}
 // }
 
+
+
+
 export default class App extends React.Component {
+	constructor(props)
+	{
+		super(props);
+		this.state = data;
+
+		this.buyProvider = (producer) => {
+			const index = this.state.producers.findIndex(function(item) {
+				return item.id === producer;
+			});
+
+			const producers = [...this.state.producers];
+			const item = { ...producers[index] };
+			item.quantity = item.quantity + 1;
+			producers[index] = item;
+
+			this.setState({producers});
+		}
+	}
+
 	render()
 	{
 		return (
-			<>
-				<Producers />
-			</>
+			<ProducerContext.Provider value={this.state.producers}>
+				<ResourcesContext.Provider value={this.state.resources}>
+					<ResourceList />
+				</ResourcesContext.Provider>
+				<Producers buy={this.buyProvider} />
+			</ProducerContext.Provider>
 		);
 	}
 }

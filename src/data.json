@@ -1,11 +1,21 @@
 {
+	"resources": [{
+		"id": "fear",
+		"value": 0
+	}, {
+		"id": "terror",
+		"value": 0
+	}, {
+		"id": "souls",
+		"value": 0
+	}],
 	"producers": [{
 		"id": "scarypumpkin",
 		"name": "Scary Pumpkin",
 		"baseCost": 1,
 		"cost": 0,
 		"production": 1,
-		"multiplier": 0,
+		"multiplier": 1,
 		"quantity": 0,
 		"available": false
 	}, {
@@ -14,7 +24,7 @@
 		"baseCost": 10,
 		"cost": 10,
 		"production": 3,
-		"multiplier": 0,
+		"multiplier": 1,
 		"quantity": 0,
 		"available": false
 	}, {
@@ -23,7 +33,7 @@
 		"baseCost": 100,
 		"cost": 100,
 		"production": 8,
-		"multiplier": 0,
+		"multiplier": 1,
 		"quantity": 0,
 		"available": false
 	}, {
@@ -32,7 +42,7 @@
 		"baseCost": 1000,
 		"cost": 1000,
 		"production": 13,
-		"multiplier": 0,
+		"multiplier": 1,
 		"quantity": 0,
 		"available": false
 	}, {
@@ -41,7 +51,7 @@
 		"baseCost": 10000,
 		"cost": 10000,
 		"production": 20,
-		"multiplier": 0,
+		"multiplier": 1,
 		"quantity": 0,
 		"available": false
 	}, {
@@ -50,7 +60,7 @@
 		"baseCost": 100000,
 		"cost": 100000,
 		"production": 80,
-		"multiplier": 0,
+		"multiplier": 1,
 		"quantity": 0,
 		"available": false
 	}, {
@@ -59,7 +69,7 @@
 		"baseCost": 1000000,
 		"cost": 1000000,
 		"production": 666,
-		"multiplier": 0,
+		"multiplier": 1,
 		"quantity": 0,
 		"available": false
 	}]

@@ -5,7 +5,6 @@ export default class Producer extends React.Component {
 	constructor(props)
 	{
 		super(props);
-		console.log("const", props);
 		this.state = { ... this.props };
 		this.handleUpgradeClick = this.handleUpgradeClick.bind(this);
 	}
@@ -38,7 +37,6 @@ export default class Producer extends React.Component {
 
 	handleUpgradeClick(event)
 	{
-		// this.setState({ quantity: this.state.quantity + 1 });
 		this.props.upgrade(this.props.id);
 	}
 }
