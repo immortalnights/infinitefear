@@ -14,8 +14,8 @@ class Resource extends React.Component {
 		return (
 			<div>
 				<h4>{this.props.id}</h4>
-				<div>{this.props.value}</div>
-				<div>{this.props.production}</div>
+				<div>{this.props.value.toFixed(2)}</div>
+				<div>{this.props.production ? this.props.production.toFixed(2) : ''}</div>
 			</div>
 		);
 	}
@@ -210,6 +210,13 @@ class ResourceList extends React.Component {
 // 	}
 // }
 
+function useFearResource() {
+	const contextValue = React.useContext(ResourcesContext);
+
+	return contextValue.find((item) => {
+		return item.id === 'fear';
+	});
+}
 
 
 
@@ -219,18 +226,93 @@ export default class App extends React.Component {
 		super(props);
 		this.state = data;
 
-		this.buyProvider = (producer) => {
-			const index = this.state.producers.findIndex(function(item) {
+		this.buyProducer = (producer) => {
+			const pIndex = this.state.producers.findIndex(function(item) {
 				return item.id === producer;
 			});
 
 			const producers = [...this.state.producers];
-			const item = { ...producers[index] };
-			item.quantity = item.quantity + 1;
-			producers[index] = item;
+			const item = { ...producers[pIndex] };
 
-			this.setState({producers});
+			let fear = this.state.resources.find((item) => {
+				return item.id === 'fear';
+			});
+
+			if (item.cost <= fear.value)
+			{
+				const index = this.state.resources.findIndex((item) => {
+					return item.id === 'fear';
+				});
+				fear = {...fear};
+				fear.value = fear.value - item.cost;
+				// this.state.resources = [...this.state.resources];
+				this.state.resources[index] = fear;
+				this.setState({resources: this.state.resources});
+
+				item.quantity = item.quantity + 1;
+				item.cost = +Math.max(item.cost * 1.3, 1).toFixed(2);
+				producers[pIndex] = item;
+			}
+			else
+			{
+				console.warn(`Cannot afford producer '${item.id}' need ${item.cost} have ${fear.value}`);
+			}
+
+			this.setState({ producers });
 		}
+	}
+
+	componentDidMount()
+	{
+		// first frame
+		requestAnimationFrame(() => { this.update(0); });
+	}
+
+	update(delta)
+	{
+		let resources = [...this.state.resources];
+		const types = resources.map((item) => {
+			return item.id;
+		});
+
+		types.forEach((type) => {
+			const index = resources.findIndex((item) => {
+				return item.id === type;
+			});
+
+			const resource = {...resources[index]};
+
+			// update resource
+			switch (resource.id)
+			{
+				case 'fear':
+				{
+					// deduplicate
+					const totalProduction = this.state.producers.reduce(function(value, item) {
+						const production = ((item.production * item.quantity) * item.multiplier);
+						return value + production;
+					}, 0);
+
+					resource.value = resource.value + (totalProduction * delta);
+
+					break;
+				}
+			}
+
+			resources[index] = resource
+		});
+
+		this.setState({resources: resources});
+
+		// next frame
+		let last = Date.now();
+		requestAnimationFrame(() => {
+			const now = Date.now();
+			const delta = (now - last) / 1000;
+
+			last = Date.now();
+			this.update(delta);
+		});
 	}
 
 	render()
@@ -240,7 +322,7 @@ export default class App extends React.Component {
 				<ResourcesContext.Provider value={this.state.resources}>
 					<ResourceList />
 				</ResourcesContext.Provider>
-				<Producers buy={this.buyProvider} />
+				<Producers buy={this.buyProducer} />
 			</ProducerContext.Provider>
 		);
 	}

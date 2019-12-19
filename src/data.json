@@ -1,76 +1,80 @@
 {
-	"resources": [{
-		"id": "fear",
-		"value": 0
-	}, {
-		"id": "terror",
-		"value": 0
-	}, {
-		"id": "souls",
-		"value": 0
-	}],
-	"producers": [{
-		"id": "scarypumpkin",
-		"name": "Scary Pumpkin",
-		"baseCost": 1,
-		"cost": 0,
-		"production": 1,
-		"multiplier": 1,
-		"quantity": 0,
-		"available": false
-	}, {
-		"id": "creepyspider",
-		"name": "Creepy Spider",
-		"baseCost": 10,
-		"cost": 10,
-		"production": 3,
-		"multiplier": 1,
-		"quantity": 0,
-		"available": false
-	}, {
-		"id": "wobblyskeleton",
-		"name": "Wobbly Skeleton",
-		"baseCost": 100,
-		"cost": 100,
-		"production": 8,
-		"multiplier": 1,
-		"quantity": 0,
-		"available": false
-	}, {
-		"id": "fourth",
-		"name": "Fourth",
-		"baseCost": 1000,
-		"cost": 1000,
-		"production": 13,
-		"multiplier": 1,
-		"quantity": 0,
-		"available": false
-	}, {
-		"id": "fifth",
-		"name": "fifth",
-		"baseCost": 10000,
-		"cost": 10000,
-		"production": 20,
-		"multiplier": 1,
-		"quantity": 0,
-		"available": false
-	}, {
-		"id": "sixth",
-		"name": "sixth",
-		"baseCost": 100000,
-		"cost": 100000,
-		"production": 80,
-		"multiplier": 1,
-		"quantity": 0,
-		"available": false
-	}, {
-		"id": "seventh",
-		"name": "seventh",
-		"baseCost": 1000000,
-		"cost": 1000000,
-		"production": 666,
-		"multiplier": 1,
-		"quantity": 0,
-		"available": false
-	}]
+	"resources": [
+		{
+			"id": "fear",
+			"value": 0
+		}, {
+			"id": "terror",
+			"value": 0
+		}, {
+			"id": "souls",
+			"value": 0
+		}
+	],
+	"producers": [
+		{
+			"id": "scarypumpkin",
+			"name": "Scary Pumpkin",
+			"baseCost": 1,
+			"cost": 0,
+			"production": 1,
+			"multiplier": 1,
+			"quantity": 0,
+			"available": false
+		}, {
+			"id": "creepyspider",
+			"name": "Creepy Spider",
+			"baseCost": 10,
+			"cost": 10,
+			"production": 3,
+			"multiplier": 1,
+			"quantity": 0,
+			"available": false
+		}, {
+			"id": "wobblyskeleton",
+			"name": "Wobbly Skeleton",
+			"baseCost": 100,
+			"cost": 100,
+			"production": 8,
+			"multiplier": 1,
+			"quantity": 0,
+			"available": false
+		}, {
+			"id": "fourth",
+			"name": "Fourth",
+			"baseCost": 1000,
+			"cost": 1000,
+			"production": 13,
+			"multiplier": 1,
+			"quantity": 0,
+			"available": false
+		}, {
+			"id": "fifth",
+			"name": "fifth",
+			"baseCost": 10000,
+			"cost": 10000,
+			"production": 20,
+			"multiplier": 1,
+			"quantity": 0,
+			"available": false
+		}, {
+			"id": "sixth",
+			"name": "sixth",
+			"baseCost": 100000,
+			"cost": 100000,
+			"production": 80,
+			"multiplier": 1,
+			"quantity": 0,
+			"available": false
+		}, {
+			"id": "seventh",
+			"name": "seventh",
+			"baseCost": 1000000,
+			"cost": 1000000,
+			"production": 666,
+			"multiplier": 1,
+			"quantity": 0,
+			"available": false
+		}
+	]
 }

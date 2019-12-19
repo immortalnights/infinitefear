@@ -12,7 +12,7 @@ class Producer extends React.Component {
 				<div>x {this.props.quantity}</div>
 				<div>x {this.props.multiplier.toFixed(2)}</div>
 				<div>= {totalProduction}</div>
-				<div><button type="button" onClick={e => { this.props.buy(this.props.id) }}>Buy</button></div>
+				<div><button type="button" onClick={e => { this.props.buy(this.props.id) }}>Buy {this.props.cost}</button></div>
 			</div>
 		);
 	}
